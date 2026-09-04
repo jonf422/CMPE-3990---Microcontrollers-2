@@ -1,0 +1,9 @@
+*.pdf
+*.png
+*.docx
+
+*.elf
+*.hex
+*.o
+*.lst
+*.map
