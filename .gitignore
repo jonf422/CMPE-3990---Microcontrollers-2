@@ -1,5 +1,6 @@
 *.pdf
 *.png
+*.jpeg
 *.docx
 
 *.elf
@@ -7,3 +8,5 @@
 *.o
 *.lst
 *.map
+
+*KiCAD/

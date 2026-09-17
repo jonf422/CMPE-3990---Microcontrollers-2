@@ -11,7 +11,7 @@ int adc_setup(){
     // datasheet - 17.13.1 ADMUX – ADC Multiplexer Selection Register
     ADMUX |= (1<<MUX1); //select ADC channel 2 (PB4) as input
     ADMUX |= (1<<ADLAR); //left adjust ADC result for 8-bit resolution
-    // ADMUX = 10000010 -> Vcc reference voltage, left adjusted, ADC2 (PB4) as input
+    // ADMUX = 00100010 -> Vcc reference voltage, left adjusted, ADC2 (PB4) as input
 
     // datasheet - 17.13.2 ADCSRA – ADC Control and Status Register A
     ADCSRA |= (1<<ADEN); //enable ADC
@@ -64,7 +64,7 @@ int main(){
 
     while (1) {
         uint8_t adc_val = adc_read(); //read potentiometer value (0-255)
-        uint8_t level = 8*adc_val/255; //scale to 0-8 for 8 LEDs
+        uint8_t level = 9*adc_val/256; //scale to 0-8 for 8 LEDs
         uint8_t out = (1 << level) - 1; //create bitmask for LEDs
 
         PORTB &= ~(1<<LATCH_PIN); //set latch low

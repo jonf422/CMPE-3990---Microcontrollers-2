@@ -10,6 +10,9 @@ PROGRAMMER = stk500v1
 
 main.elf: src/main.c
 	avr-gcc -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os -Wall -Wextra -o main.elf src/main.c
+	avr-size main.elf
+	avr-nm --size-sort --radix=d -C main.elf
+	
 
 main.hex: main.elf
 	avr-objcopy -O ihex -R .eeprom main.elf main.hex
@@ -18,4 +21,4 @@ flash: main.hex
 	avrdude -c $(PROGRAMMER) -p $(MCU) -P$(PORT) -b$(BAUD) -U flash:w:main.hex:i
 
 clean:
-	del \Q main.elf main.hex 2>nul
+	del /Q main.elf main.hex 2>nul
